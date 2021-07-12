@@ -3,20 +3,21 @@ const router = express.Router()
 
 const { getCondition } = require('../helpers/index')
 const db = require('../models/index')
+
 const Movies = db.movies
 
 router.get('/', async (req, res, next) => {
     try {
-        const condition = getCondition(req.query)
+        const condition = await getCondition(req.query)
         const data = await Movies.findAll({ where: condition })
-        return res.send({
+        return res.status(200).json({
             data,
             message: "Success",
             statusText: true
         });
     } catch (error) {
         console.log(error)
-        res.status(500).send({
+        res.status(500).json({
             message: error.message || "Something Error"
         })
     }

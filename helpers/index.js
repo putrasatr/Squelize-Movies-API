@@ -12,7 +12,9 @@ const getCondition = (o) => {
             }
         }
     }
-    return condition
+    return new Promise(resolve => {
+        resolve(condition)
+    })
 }
 
 module.exports = { getCondition }
