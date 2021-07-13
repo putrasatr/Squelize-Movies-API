@@ -4,17 +4,19 @@ const db = require("../models/index")
 const Users = db.users
 
 /* GET users listing. */
-router.get('/', function (req, res, next) {
-  Users.findAll({})
-    .then(data => {
-      res.status(201).send({
-        data
-      }).catch(err => {
-        res.send(500).send({
-          message: err.message || "Something Error"
-        })
-      })
+router.get('/', async function (req, res, next) {
+  try {
+    const data = await Users.findAll({})
+    return res.status(201).send({
+      data
     })
+
+  } catch (error) {
+    console.log(error)
+    return res.send(500).send({
+      message: err.message || "Something Error"
+    })
+  }
 });
 
 router.post('/register', function (req, res, next) {

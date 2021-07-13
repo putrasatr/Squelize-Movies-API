@@ -4,12 +4,12 @@ const router = express.Router()
 const { getCondition } = require('../helpers/index')
 const db = require('../models/index')
 
-const Movies = db.movies
+const Foods = db.foods
 
 router.get('/', async (req, res, next) => {
     try {
         const condition = await getCondition(req.query)
-        const data = await Movies.findAll({ where: condition })
+        const data = await Foods.findAll({ where: condition })
         return res.status(200).json({
             code: 200,
             data,
@@ -30,7 +30,7 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
 
     try {
-        await Movies.create(req.body)
+        await Foods.create(req.body)
         return res.status(201).send({
             message: "Success",
             statusText: true
