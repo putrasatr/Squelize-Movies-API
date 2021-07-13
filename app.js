@@ -7,6 +7,7 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const moviesRouter = require('./routes/movies');
 const foodsRouter = require('./routes/foods');
+const postsRouter = require('./routes/posts');
 
 const app = express();
 
@@ -23,5 +24,6 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/movies', moviesRouter);
 app.use('/foods', foodsRouter);
+app.use('/posts', postsRouter);
 
 module.exports = app;
