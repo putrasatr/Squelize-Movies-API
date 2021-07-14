@@ -20,7 +20,6 @@ router.get('/', async function (req, res, next) {
 });
 
 router.post('/register', function (req, res, next) {
-  console
   if (!req.body.email) {
     res.status(400).send({
       message: "Content can not be empty!"
@@ -46,6 +45,38 @@ router.post('/register', function (req, res, next) {
           err.message || "Some error occurred while creating the Users."
       });
     });
+});
+
+router.post('/login', async function (req, res, next) {
+  console.log(req.body)
+  const { email, password } = req.body
+  try {
+    const userFound = await Users.findAll({
+      where: {
+        email
+      }
+    })
+    if (userFound.length == 0) throw ({ status: 200, message: "User Not Found" })
+    const passwordMatch = await Users.findAll({
+      where: {
+        email,
+        password
+      }
+    })
+    if (passwordMatch.length == 0) throw ({ status: 200, message: "Email or PassWord is not Correct!" })
+    return res.status(200).send({
+      data: userFound,
+      message: "Found"
+    });
+  } catch (err) {
+    console.log(err)
+    const status = err.status || 500
+    return res.status(status).send({
+      data: [],
+      message:
+        err.message || "Some error occurred while creating the Users."
+    });
+  }
 });
 
 module.exports = router;

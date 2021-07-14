@@ -3,11 +3,14 @@ module.exports = (sequelize, Sequelize) => {
         userId: {
             type: Sequelize.INTEGER
         },
-        image: {
+        images: {
             type: Sequelize.STRING
         },
         likes: {
             type: Sequelize.INTEGER
+        },
+        captions: {
+            type: Sequelize.STRING
         }
     });
 
