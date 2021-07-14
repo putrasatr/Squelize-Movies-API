@@ -8,6 +8,7 @@ const usersRouter = require('./routes/users');
 const moviesRouter = require('./routes/movies');
 const foodsRouter = require('./routes/foods');
 const postsRouter = require('./routes/posts');
+const commentsRouter = require('./routes/comments');
 
 const app = express();
 
@@ -25,5 +26,6 @@ app.use('/users', usersRouter);
 app.use('/movies', moviesRouter);
 app.use('/foods', foodsRouter);
 app.use('/posts', postsRouter);
+app.use('/comments', commentsRouter);
 
 module.exports = app;

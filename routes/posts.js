@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 
-const { getCondition } = require('../helpers/index')
 const db = require('../models/index')
 
 const Posts = db.posts
@@ -13,8 +12,12 @@ router.get('/', async (req, res, next) => {
         const page = req.query.page || 1
         const limit = 5
         const offset = Math.ceil(limit * (page - 1))
-
-        // const condition = await getCondition(req.query)
+        const { count } = await Posts.findAndCountAll({
+            include: [{
+                model: Users,
+                attributes: ["username", "email"]
+            }],
+        })
         const data = await Posts.findAll({
             offset,
             limit,
@@ -23,11 +26,20 @@ router.get('/', async (req, res, next) => {
                 attributes: ["username", "email"]
             }],
         })
+        const pages = Math.ceil(count / limit)
         return res.status(200).json({
             code: 200,
             data,
             message: "Success",
-            statusText: true
+            statusText: true,
+            pagination: {
+                page,
+                limit,
+                offset,
+                totalAll: count,
+                pages
+            }
+
         });
     } catch (error) {
         console.log(error)
@@ -35,7 +47,8 @@ router.get('/', async (req, res, next) => {
             code: 500,
             data: false,
             statusText: false,
-            message: error.message || "Something Error"
+            message: error.message || "Something Error",
+            page
         })
     }
 })
