@@ -11,6 +11,7 @@ const postsRouter = require('./routes/posts');
 const commentsRouter = require('./routes/comments');
 
 const app = express();
+require('dotenv').config()
 
 app.use(logger('dev'));
 app.use(express.json());
