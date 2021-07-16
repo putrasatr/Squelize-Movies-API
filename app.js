@@ -9,6 +9,7 @@ const moviesRouter = require('./routes/movies');
 const foodsRouter = require('./routes/foods');
 const postsRouter = require('./routes/posts');
 const commentsRouter = require('./routes/comments');
+const likesRouter = require('./routes/likes');
 
 const app = express();
 require('dotenv').config()
@@ -28,5 +29,6 @@ app.use('/movies', moviesRouter);
 app.use('/foods', foodsRouter);
 app.use('/posts', postsRouter);
 app.use('/comments', commentsRouter);
+app.use('/likes', likesRouter);
 
 module.exports = app;
