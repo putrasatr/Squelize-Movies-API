@@ -17,5 +17,6 @@ db.foods = require("./foods.model.js")(sequelize, Sequelize);
 db.posts = require("./posts.model.js")(sequelize, Sequelize);
 db.comments = require("./comments.model.js")(sequelize, Sequelize);
 db.likes = require("./likes.model.js")(sequelize, Sequelize);
+db.saves= require("./saves.model.js")(sequelize, Sequelize);
 
 module.exports = db;
