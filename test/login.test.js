@@ -16,9 +16,9 @@ describe('Fetch post test', async () => {
       .post('/users/login',)
       .send(body_send)
       .set('Accept', 'application/json')
-    // const { data, pagination, code } = body;
-    // expect(status).to.equal(200);
-    // expect(data[0]).to.deep.include(post);
-    // expect(pagination).to.deep.include(paginationTest);
+    const { data, pagination, code } = body;
+    expect(status).to.equal(200);
+    expect(data[0]).to.deep.include(post);
+    expect(pagination).to.deep.include(paginationTest);
   });
 });
