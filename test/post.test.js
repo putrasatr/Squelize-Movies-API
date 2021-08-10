@@ -24,3 +24,22 @@ describe('Fetch post test', async () => {
     expect(pagination).to.deep.include(paginationTest);
   });
 });
+
+describe('Fetch post test', async () => {
+  it('Shows all stock states', async () => {
+    const { body, status } = await request(app).get('/posts');
+    const { data, pagination, code } = body;
+    expect(status).to.equal(200);
+    expect(data[0]).to.deep.include(post);
+    expect(pagination).to.deep.include(paginationTest);
+  });
+});
+describe('Fetch post test', async () => {
+  it('Shows all stock states', async () => {
+    const { body, status } = await request(app).get('/posts');
+    const { data, pagination, code } = body;
+    expect(status).to.equal(200);
+    expect(data[0]).to.deep.include(post);
+    expect(pagination).to.deep.include(paginationTest);
+  });
+});
